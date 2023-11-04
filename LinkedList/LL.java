@@ -2,63 +2,98 @@
 class Node{
     int data;
     Node next;
-    Boolean liked;
 }
 
+
 public class LL {
-    public static void main(String[] args) {
-        System.out.println("My Linked List Test : 10,20,30,40");
+
+    static Node HEAD;
+
+    static void insertStart(int dataToInsert){
+        Node temp = new Node();
+        temp.data = dataToInsert;
+
+        temp.next = HEAD;
+        HEAD = temp;
+
+    }
+
+    static void insertAtIndex(int dataToInsert, int index){
+        int ct = 0;
+        Node n = HEAD;
         
-        Node n1 = new Node();
-        Node n2 = new Node();
-        Node n3 = new Node();
-        Node n4 = new Node();
-        Node n5 = new Node();
-
-        //Filling Data 
-        n1.data = 10;
-        n1.liked = true;
-
-        n2.data = 20;
-        n2.liked = false;
-        
-        n3.data = 30;
-        n3.liked = true;
-        
-        n4.data = 40;
-        n4.liked = false;
-        
-        n5.data = 50;
-        n5.liked = true;
-
-        // Linking
-        n1.next = n2;
-        n2.next = n3;
-        n3.next = n4;
-        n4.next = n5;
-        n5.next = null;
-
-        // // Printing All numbers : Traversal
-        // Node HEAD = n1;
-        // while(HEAD != null){
-            
-        //     System.out.println(HEAD.data);
-        //     HEAD = HEAD.next;
-
-        // }
-        System.out.println("Right reversal Array");
-        // Reversal Right
-        n5.next = n1;
-        n4.next = null;
-
-        Node HEAD = n5;
-        while(HEAD != null){
-            if(HEAD.liked){
-                System.out.println(HEAD.data);
-            }
-            HEAD = HEAD.next;
-
+        while (ct != (index-1) ) {
+            n = n.next;
+            ct++;
         }
 
+        Node temp = new Node();
+        temp.data = dataToInsert;
+        
+        temp.next = n.next;
+        n.next = temp;
+    }
+
+    static void insertEnd(int dataToInsert){
+        Node temp = new Node();
+        temp.data = dataToInsert;
+        temp.next = null;
+
+        Node list = HEAD;
+
+        while(list.next != null){
+            list = list.next;
+        }
+        list.next = temp;
+       
+    }
+    static void deleteAtIndex(int index){
+        int ct = 0;
+        Node n = HEAD;
+
+        while (ct != (index-1)) {
+            n = n.next;
+            ct++;    
+        }
+        n.next = n.next.next;
+
+    }
+    static void printlist(){
+         // Prining my list
+        Node n = HEAD;
+        while(n !=null ){
+            System.out.println(n.data);
+            n = n.next;
+        }
+    }
+    static int getLength(){
+        int ct = 0;
+        Node list= HEAD;
+        while(list != null){
+            list = list.next;
+            ct++;
+        }
+        return ct;
+    }
+    
+    public static void main(String[] args) {
+
+        
+        HEAD = new Node();
+        HEAD.data = 10;
+     
+        insertEnd(60);
+        insertEnd(30);
+        insertEnd(40);
+        insertStart(-10);
+        // insertAtIndex(100, 2);
+
+        printlist();
+        System.out.println("------------------");
+        deleteAtIndex(2);
+        printlist();
+
+
+        // System.out.println("Length = "+ getLength(HEAD));
     }   
 }
