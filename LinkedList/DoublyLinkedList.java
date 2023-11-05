@@ -26,6 +26,14 @@ public class DoublyLinkedList {
         n4.data = 40;
         n3.next = n4;
 
+
+        // Swapping
+        // n1 n3
+        
+        Node temp = n1;
+        n1 = n3;
+        n3 = temp;
+
         // Traversal
         System.out.println("Forward Traversal");
         Node HEAD = n1;
