@@ -10,17 +10,46 @@ class Bubblesort {
 		boolean swapped;
 		for (i = 0; i < n - 1; i++) {
             System.out.println("----");
-            System.out.print("i => "+i);
+           // System.out.print("i => "+i);
 			swapped = false;
 			for (j = 0; j < n - i - 1; j++) {
-                System.out.print("j => "+j);
+              //  System.out.print("j => "+j);
 
 				if (arr[j] > arr[j + 1]) {
-                    System.out.print("Swapping j,j+1 :"+j+" "+(j+1));			
+                   // System.out.print("Swapping j,j+1 :"+j+" "+(j+1));			
 					// Swap arr[j] and arr[j+1]
 					temp = arr[j];
 					arr[j] = arr[j + 1];
 					arr[j + 1] = temp;
+					swapped = true;
+				}
+                System.out.println();
+			}
+			// printArray(arr, arr.length);
+			// If no two elements were
+			// swapped by inner loop, then break
+			if (swapped == false)
+				break;
+		}
+	}
+static void bubbleSortDLL(DLL mylist)
+	{
+		int i, j, temp;
+		int n = mylist.getLength();
+		boolean swapped;
+		for (i = 0; i < n - 1; i++) {
+            System.out.println("----");
+           // System.out.print("i => "+i);
+			swapped = false;
+			for (j = 0; j < n - i - 1; j++) {
+                //System.out.print("j => "+j);
+
+				if (mylist.getData(j) > mylist.getData(j + 1)) {
+                   // System.out.print("Swapping j,j+1 :"+j+" "+(j+1));			
+					// Swap arr[j] and arr[j+1]
+					temp = mylist.getData(j);
+					mylist.updateData(j, mylist.getData(j+1)) ;
+					mylist.updateData(j+1, temp);
 					swapped = true;
 				}
                 System.out.println();
@@ -45,11 +74,20 @@ class Bubblesort {
 	// Driver program
 	public static void main(String args[])
 	{
-		int arr[] = { 64, 34, 25, 12, 22, 11, 90 };
-		int n = arr.length;
-		bubbleSort(arr, n);
-		System.out.println("Sorted array: ");
-		printArray(arr, n);
+		// int arr[] = { 64, 34, 25, 12, 22, 11, 90 };
+		// int n = arr.length;
+		// bubbleSort(arr, n);
+		// System.out.println("Sorted array: ");
+		// printArray(arr, n);
+        DLL mylist = new DLL(1);
+		mylist.insertEnd(4);
+		mylist.insertEnd(2);
+		mylist.insertEnd(5);
+		mylist.insertEnd(-10);
+		bubbleSortDLL(mylist);
+		mylist.printForward();
+
+
 	}
 
 }
